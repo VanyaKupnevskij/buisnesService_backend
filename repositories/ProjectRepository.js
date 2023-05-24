@@ -47,8 +47,11 @@ class ProjectRepository extends IRepository {
     return result[0].affectedRows > 0;
   }
 
-  async findByName(name) {
-    const [rows] = await connection.execute('SELECT * FROM projects WHERE name = ?', [name]);
+  async findByName(name, owner_id) {
+    const [rows] = await connection.execute(
+      'SELECT * FROM projects WHERE name = ? AND owner_id = ?',
+      [name, owner_id],
+    );
 
     return rows;
   }

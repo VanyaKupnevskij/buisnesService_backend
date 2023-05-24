@@ -8,7 +8,7 @@ class ProjectService extends BaseService {
   }
 
   create = async (data) => {
-    const finded = (await this.repository.findByName(data.name))[0];
+    const finded = (await this.repository.findByName(data.name, data.owner_id))[0];
     if (finded) {
       throw new AppError(ERROR_PRESETS.CREATE(data.name));
     }

@@ -13,7 +13,11 @@ class CreateProjectAction extends IAction {
   }
 
   run = async (req, res) => {
-    let validData = this.validate(req.body);
+    let validData = this.validate({
+      name: req.body.name,
+      category: req.body.category,
+      owner_id: req.user.id,
+    });
 
     const createdItem = await this.service.create(validData);
 
