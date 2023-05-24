@@ -1,22 +1,21 @@
 import IAction from '../IAction.js';
 import { STATUS } from '../../config/enums.js';
 
-import FilmService from '../../services/FilmService.js';
-import FilmRepository from '../../repositories/FilmRepository.js';
+import ProjectService from '../../services/ProjectService.js';
+import ProjectRepository from '../../repositories/ProjectRepository.js';
 import AppError, { ERROR_PRESETS } from '../../errors/AppError.js';
-import RoleEntity from '../../entities/RoleEntity.js';
 
-class CreateFilmAction extends IAction {
+class CreateProjectAction extends IAction {
   constructor() {
     super();
 
-    this.filmService = new FilmService(new FilmRepository());
+    this.projectService = new ProjectService(new ProjectRepository());
   }
 
   run = async (req, res) => {
     let validData = this.validate(req.body);
 
-    const createdFilm = await this.filmService.create(validData);
+    const createdFilm = await this.projectService.create(validData);
 
     return res.status(STATUS.created).json({
       id: createdFilm.id,
@@ -56,4 +55,4 @@ class CreateFilmAction extends IAction {
   }
 }
 
-export default CreateFilmAction;
+export default CreateProjectAction;

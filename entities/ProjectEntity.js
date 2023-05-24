@@ -1,6 +1,6 @@
 import IEntity from './IEntity.js';
 
-class FilmEntity extends IEntity {
+class ProjectEntity extends IEntity {
   constructor(uid) {
     super(uid);
 
@@ -15,4 +15,4 @@ class FilmEntity extends IEntity {
   }
 }
 
-export default FilmEntity;
+export default ProjectEntity;

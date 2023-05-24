@@ -9,7 +9,7 @@ SET @duration = ?;
 SET @preview = ?;
 SET @budget = ?;
 
-INSERT INTO films ( id,
+INSERT INTO projects ( id,
                     name,
                     director,
                     operator,
