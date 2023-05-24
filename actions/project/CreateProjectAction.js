@@ -9,19 +9,19 @@ class CreateProjectAction extends IAction {
   constructor() {
     super();
 
-    this.projectService = new ProjectService(new ProjectRepository());
+    this.service = new ProjectService(new ProjectRepository());
   }
 
   run = async (req, res) => {
     let validData = this.validate(req.body);
 
-    const createdFilm = await this.projectService.create(validData);
+    const createdItem = await this.service.create(validData);
 
     return res.status(STATUS.created).json({
-      id: createdFilm.id,
-      name: createdFilm.name,
-      ganre: createdFilm.ganre,
-      preview: createdFilm.preview,
+      id: createdItem.id,
+      name: createdItem.name,
+      category: createdItem.category,
+      owner_id: createdItem.owner_id,
     });
   };
 
@@ -29,26 +29,11 @@ class CreateProjectAction extends IAction {
     if (!input.name) {
       throw new AppError(ERROR_PRESETS.INVALID_INPUT('Name', input.name, 'must exist'));
     }
-    if (!input.director) {
-      throw new AppError(ERROR_PRESETS.INVALID_INPUT('Director', input.director, 'must exist'));
+    if (!input.category) {
+      throw new AppError(ERROR_PRESETS.INVALID_INPUT('Category', input.category, 'must exist'));
     }
-    if (!input.operator) {
-      throw new AppError(ERROR_PRESETS.INVALID_INPUT('Operator', input.operator, 'must exist'));
-    }
-    if (!input.ganre) {
-      throw new AppError(ERROR_PRESETS.INVALID_INPUT('Ganre', input.ganre, 'must exist'));
-    }
-    if (!input.duration) {
-      throw new AppError(ERROR_PRESETS.INVALID_INPUT('Duration', input.duration, 'must exist'));
-    }
-    if (!input.preview) {
-      throw new AppError(ERROR_PRESETS.INVALID_INPUT('Preview', input.preview, 'must exist'));
-    }
-    if (!input.budget) {
-      throw new AppError(ERROR_PRESETS.INVALID_INPUT('Budget', input.budget, 'must exist'));
-    }
-    if (!input.roles) {
-      throw new AppError(ERROR_PRESETS.INVALID_INPUT('Roles', input.roles, 'must exist'));
+    if (!input.owner_id) {
+      throw new AppError(ERROR_PRESETS.INVALID_INPUT('Owner_id', input.owner_id, 'must exist'));
     }
 
     return input;

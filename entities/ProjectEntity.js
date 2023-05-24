@@ -4,14 +4,10 @@ class ProjectEntity extends IEntity {
   constructor(uid) {
     super(uid);
 
-    this.name = '';
-    this.director = '';
-    this.operator = '';
-    this.ganre = '';
-    this.duration = '';
-    this.preview = '';
-    this.budget = '';
-    this.roles = [];
+    this.name = null;
+    this.category = '';
+    this.owner_id = null;
+    this.records = [];
   }
 }
 

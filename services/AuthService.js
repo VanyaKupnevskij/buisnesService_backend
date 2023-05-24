@@ -24,7 +24,7 @@ class AuthService extends BaseService {
     user.email = email;
     user.password = hashedPassword;
 
-    const createdUser = await this.repository.add(user);
+    const createdUser = await this.repository.insert(user);
 
     return createdUser;
   };

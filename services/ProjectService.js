@@ -1,8 +1,6 @@
 import AppError, { ERROR_PRESETS } from '../errors/AppError.js';
 import BaseService from './BaseService.js';
 import ProjectEntity from '../entities/ProjectEntity.js';
-import RoleEntity from '../entities/RoleEntity.js';
-import ActorEntity from '../entities/ActorEntity.js';
 
 class ProjectService extends BaseService {
   constructor(repository) {
@@ -15,26 +13,10 @@ class ProjectService extends BaseService {
       throw new AppError(ERROR_PRESETS.CREATE(data.name));
     }
 
-    if (data.roles) {
-      let roles = data.roles.map((role) => {
-        let roleEntity = new RoleEntity();
-        roleEntity.actor = new ActorEntity();
-        roleEntity.actor.full_name = role.actor.full_name;
-        return roleEntity;
-      });
-
-      data.roles = roles;
-    }
-
     let item = new ProjectEntity();
     item.name = data.name;
-    item.director = data.director;
-    item.operator = data.operator;
-    item.ganre = data.ganre;
-    item.duration = data.duration;
-    item.preview = data.preview;
-    item.budget = data.budget;
-    item.roles = data.roles;
+    item.category = data.category;
+    item.owner_id = data.owner_id;
 
     const createdItem = await this.repository.insert(item);
 

@@ -5,21 +5,21 @@ import CinemaService from '../../services/CinemaService.js';
 import CinemaRepository from '../../repositories/CinemaRepository.js';
 import AppError, { ERROR_PRESETS } from '../../errors/AppError.js';
 
-class CreateCinemaAction extends IAction {
+class CreateWorkerAction extends IAction {
   constructor() {
     super();
 
-    this.cinemaService = new CinemaService(new CinemaRepository());
+    this.service = new CinemaService(new CinemaRepository());
   }
 
   run = async (req, res) => {
     let validData = this.validate(req.body);
 
-    const createdCinema = await this.cinemaService.create(validData);
+    const createdItem = await this.service.create(validData);
 
     return res
       .status(STATUS.created)
-      .json({ id: createdCinema.id, name: createdCinema.name, adress: createdCinema.adress });
+      .json({ id: createdItem.id, name: createdItem.name, adress: createdItem.adress });
   };
 
   validate(input) {
@@ -34,4 +34,4 @@ class CreateCinemaAction extends IAction {
   }
 }
 
-export default CreateCinemaAction;
+export default CreateWorkerAction;

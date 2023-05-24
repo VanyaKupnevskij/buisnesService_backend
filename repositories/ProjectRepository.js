@@ -4,7 +4,7 @@ import { pool as connection } from '../config/database.mysql.js';
 import AppError, { ERROR_PRESETS } from '../errors/AppError.js';
 import loadQuery from '../queries/loadQuery.js';
 
-const createQuery = loadQuery('project/create');
+const createQuery = loadQuery('projects/create');
 
 class ProjectRepository extends IRepository {
   constructor() {
@@ -14,15 +14,9 @@ class ProjectRepository extends IRepository {
   async insert(newData) {
     await connection.query(createQuery, [
       newData.id,
+      newData.owner_id,
       newData.name,
-      newData.director,
-      newData.operator,
-      newData.ganre,
-      newData.duration,
-      newData.preview,
-      newData.budget,
-      newData.roles.map((role) => [role.actor.id, role.actor.full_name]),
-      newData.roles.map((role) => [role.id, role.actor.id, newData.id]),
+      newData.category,
     ]);
 
     return this.getById(newData.id);
@@ -33,10 +27,10 @@ class ProjectRepository extends IRepository {
   async getById(id) {
     const [rows] = await connection.execute('SELECT * FROM projects WHERE id = ?', [id]);
 
-    const film = rows[0];
-    if (!film) throw new AppError(ERROR_PRESETS.ENTITY_ID_NOT_EXIST(id));
+    const item = rows[0];
+    if (!item) throw new AppError(ERROR_PRESETS.ENTITY_ID_NOT_EXIST(id));
 
-    return film;
+    return item;
   }
 
   async getAll(owner_id) {

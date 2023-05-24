@@ -1,9 +1,9 @@
 import IAction from '../IAction.js';
-import { ROLES, STATUS } from '../../config/enums.js';
 
 import AuthService from '../../services/AuthService.js';
 import UserRepository from '../../repositories/UserRepository.js';
 import AppError, { ERROR_PRESETS } from '../../errors/AppError.js';
+import { STATUS } from '../../config/enums.js';
 
 class RegistrationAction extends IAction {
   constructor() {
@@ -12,22 +12,18 @@ class RegistrationAction extends IAction {
     this.authService = new AuthService(new UserRepository());
   }
 
-  get accessTag() {
-    return 'auth:registration';
-  }
-
   run = async (req, res) => {
-    const { email, password, role } = this.validate(req.body);
+    const { email, password, name } = this.validate(req.body);
 
-    const createdUser = await this.authService.registration(email, password, role);
+    const createdUser = await this.authService.registration(name, email, password);
 
     return res
       .status(STATUS.created)
-      .json({ id: createdUser.id, email: createdUser.email, role: createdUser.role });
+      .json({ id: createdUser.id, email: createdUser.email, name: createdUser.name });
   };
 
   validate(input) {
-    const { email, password, role } = input;
+    const { email, password, name } = input;
 
     const regexEmail = /^([a-z0-9]+(?:[._-][a-z0-9]+)*)@([a-z0-9]+(?:[.-][a-z0-9]+)*\.[a-z]{2,})$/i;
 
@@ -48,8 +44,8 @@ class RegistrationAction extends IAction {
     if (!password) {
       throw new AppError(ERROR_PRESETS.INVALID_INPUT('Password', password, 'must exist'));
     }
-    if (!Object.values(ROLES).includes(role)) {
-      throw new AppError(ERROR_PRESETS.INVALID_INPUT('Role', role, 'not found'));
+    if (!name) {
+      throw new AppError(ERROR_PRESETS.INVALID_INPUT('Name', name, 'must exist'));
     }
 
     if (!regexEmail.test(email)) {
@@ -62,7 +58,7 @@ class RegistrationAction extends IAction {
       }
     }
 
-    return { email, password, role };
+    return { email, password, name };
   }
 }
 

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-import RegistrationAction from '../ations/auth/RegistrationAction.js';
-import LoginAction from '../ations/auth/LoginAction.js';
+import RegistrationAction from '../actions/auth/RegistrationAction.js';
+import LoginAction from '../actions/auth/LoginAction.js';
 
 const authRouter = new Router();
 

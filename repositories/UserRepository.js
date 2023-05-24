@@ -8,7 +8,7 @@ class UserRepository extends IRepository {
     super();
   }
 
-  async add(newUser) {
+  async insert(newUser) {
     await connection.query('INSERT INTO users (id, name, email, password) VALUES (?, ?, ?, ?)', [
       newUser.id,
       newUser.name,
@@ -36,7 +36,7 @@ class UserRepository extends IRepository {
     return rows;
   }
 
-  async remove(id) {
+  async delete(id) {
     const result = await connection.query('DELETE FROM users WHERE id = ?', [id]);
 
     return result[0].affectedRows > 0;

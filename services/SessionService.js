@@ -2,7 +2,6 @@ import AppError, { ERROR_PRESETS } from '../errors/AppError.js';
 import BaseService from './BaseService.js';
 import SessionEntity from '../entities/SessionEntity.js';
 import HallEntity from '../entities/HallEntity.js';
-import FilmEntity from '../entities/FilmEntity.js';
 
 class SessionService extends BaseService {
   constructor(repository) {
@@ -17,7 +16,7 @@ class SessionService extends BaseService {
 
     let session = new SessionEntity();
     session.hall = new HallEntity(sessionData.halls_id);
-    session.film = new FilmEntity(sessionData.films_id);
+    // session.film = new FilmEntity(sessionData.films_id);
     session.date = sessionData.date;
     session.price = sessionData.price;
     session.free_place = sessionData.free_place;

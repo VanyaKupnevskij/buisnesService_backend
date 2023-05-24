@@ -14,7 +14,7 @@ class LoginAction extends IAction {
   run = async (req, res) => {
     const { name, email, password } = this.validate(req.body);
 
-    const token = await this.authService.login(name, email, password);
+    const token = await this.authService.login(email, password);
 
     return res.json({ success: true, token });
   };

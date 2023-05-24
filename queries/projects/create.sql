@@ -1,35 +1,19 @@
 BEGIN;
 
 SET @id = ?;
+SET @owner_id = ?;
 SET @name = ?;
-SET @director = ?;
-SET @operator = ?;
-SET @ganre = ?;
-SET @duration = ?;
-SET @preview = ?;
-SET @budget = ?;
+SET @category = ?;
+
 
 INSERT INTO projects ( id,
+                    owner_id,
                     name,
-                    director,
-                    operator,
-                    ganre,
-                    duration,
-                    preview,
-                    budget) 
+                    category) 
             VALUES (@id,
-                    @name, 
-                    @director, 
-                    @operator,
-                    @ganre,
-                    @duration,
-                    @preview,
-                    @budget );
+                    @owner_id,
+                    @name,
+                    @category );
 
-INSERT INTO actors (id, full_name) 
-            VALUES ?;
-
-INSERT INTO roles (id, actors_id, films_id) 
-            VALUES ?;
 
 COMMIT;
