@@ -6,6 +6,8 @@ import GetSessionAction from '../actions/session/GetSessionAction.js';
 import DeleteSessionAction from '../actions/session/DeleteSessionAction.js';
 import BuyTicketAction from '../actions/session/BuyTicketAction.js';
 
+import auth from '../middlewares/auth.middleware.js';
+
 const sessionRouter = new Router();
 
 const getAllSessionsAction = new GetAllSessionsAction();
@@ -14,10 +16,10 @@ const getSessionAction = new GetSessionAction();
 const deleteSessionAction = new DeleteSessionAction();
 const buyTicketAction = new BuyTicketAction();
 
-sessionRouter.get('/', getAllSessionsAction.run);
-sessionRouter.post('/create', createSessionAction.run);
-sessionRouter.get('/:id', getSessionAction.run);
-sessionRouter.delete('/:id', deleteSessionAction.run);
-sessionRouter.post('/buy/:id', buyTicketAction.run);
+sessionRouter.get('/', auth, getAllSessionsAction.run);
+sessionRouter.post('/create', auth, createSessionAction.run);
+sessionRouter.get('/:id', auth, getSessionAction.run);
+sessionRouter.delete('/:id', auth, deleteSessionAction.run);
+sessionRouter.post('/buy/:id', auth, buyTicketAction.run);
 
 export default sessionRouter;

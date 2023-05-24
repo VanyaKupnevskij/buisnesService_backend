@@ -1,10 +1,10 @@
 {
   "port": 4444,
-  "jwtSecret": "cinema site secret_jwt",
+  "jwtSecret": "buisnes service site secret_jwt",
   "baseUrl": "http://localhost:4444",
   "HOST_MYSQL": "localhost",
   "USER_MYSQL": "root",
   "PASSWORD_MYSQL": "root",
   "PORT_MYSQL": "3306",
-  "DATABASE_MYSQL": "cinema"
+  "DATABASE_MYSQL": "buisnes_service"
 }
