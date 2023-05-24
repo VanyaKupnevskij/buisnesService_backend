@@ -1,23 +1,23 @@
 import IAction from '../IAction.js';
 
 import UID from '../../lib/UID.js';
-import CinemaService from '../../services/CinemaService.js';
-import CinemaRepository from '../../repositories/CinemaRepository.js';
+import WorkerService from '../../services/WorkerService.js';
+import WorkerRepository from '../../repositories/WorkerRepository.js';
 import AppError, { ERROR_PRESETS } from '../../errors/AppError.js';
 
-class GetCinemaAction extends IAction {
+class GetWorkerAction extends IAction {
   constructor() {
     super();
 
-    this.cinemaService = new CinemaService(new CinemaRepository());
+    this.service = new WorkerService(new WorkerRepository());
   }
 
   run = async (req, res) => {
     const { id } = this.validate(req.params);
 
-    const cinema = await this.cinemaService.getById(id);
+    const item = await this.service.getById(id);
 
-    return res.json({ ...cinema });
+    return res.json({ ...item });
   };
 
   validate(input) {
@@ -31,4 +31,4 @@ class GetCinemaAction extends IAction {
   }
 }
 
-export default GetCinemaAction;
+export default GetWorkerAction;

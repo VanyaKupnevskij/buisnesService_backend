@@ -1,23 +1,23 @@
 import IAction from '../IAction.js';
 
 import UID from '../../lib/UID.js';
-import CinemaService from '../../services/CinemaService.js';
-import CinemaRepository from '../../repositories/CinemaRepository.js';
+import WorkerService from '../../services/WorkerService.js';
+import WorkerRepository from '../../repositories/WorkerRepository.js';
 import AppError, { ERROR_PRESETS } from '../../errors/AppError.js';
 
-class DeleteCinemaAction extends IAction {
+class DeleteWorkerAction extends IAction {
   constructor() {
     super();
 
-    this.cinemaService = new CinemaService(new CinemaRepository());
+    this.service = new WorkerService(new WorkerRepository());
   }
 
   run = async (req, res) => {
     const { id } = this.validate(req.params);
 
-    await this.cinemaService.deleteById(id);
+    await this.service.deleteById(id);
 
-    return res.json({ success: true, message: `Seccesful deleted cinema by id: ${id}` });
+    return res.json({ success: true, message: `Seccesful deleted by id: ${id}` });
   };
 
   validate(input) {
@@ -31,4 +31,4 @@ class DeleteCinemaAction extends IAction {
   }
 }
 
-export default DeleteCinemaAction;
+export default DeleteWorkerAction;

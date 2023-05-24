@@ -4,7 +4,9 @@ class RoleEntity extends IEntity {
   constructor(uid) {
     super(uid);
 
-    this.actor = null;
+    this.price = null;
+    this.already_paid = 0;
+    this.records_id = null;
   }
 }
 

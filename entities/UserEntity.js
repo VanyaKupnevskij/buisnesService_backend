@@ -5,7 +5,7 @@ class UserEntity extends IEntity {
     super(uid);
 
     this.name = 'NickName';
-    this.email = '';
+    this.email = null;
     this.password = '';
   }
 }
