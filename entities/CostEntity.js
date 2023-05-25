@@ -1,13 +1,15 @@
 import IEntity from './IEntity.js';
 
-class RoleEntity extends IEntity {
+class CostEntity extends IEntity {
   constructor(uid) {
     super(uid);
 
+    this.records_id = null;
+    this.workers_id = null;
+
     this.price = null;
     this.already_paid = 0;
-    this.records_id = null;
   }
 }
 
-export default RoleEntity;
+export default CostEntity;

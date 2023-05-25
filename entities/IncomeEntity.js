@@ -1,11 +1,13 @@
 import IEntity from './IEntity.js';
 
 class IncomeEntity extends IEntity {
-  constructor({ uid }) {
+  constructor(uid) {
     super(uid);
 
-    this.income_value = 0;
-    this.date = new Date(Date.now());
+    this.records_id = null;
+
+    this.price = null;
+    this.already_paid = 0;
   }
 }
 

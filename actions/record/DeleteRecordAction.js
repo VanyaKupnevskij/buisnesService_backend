@@ -1,23 +1,23 @@
 import IAction from '../IAction.js';
 
 import UID from '../../lib/UID.js';
-import SessionService from '../../services/SessionService.js';
-import SessionRepository from '../../repositories/SessionRepository.js';
+import RecordService from '../../services/RecordService.js';
+import RecordRepository from '../../repositories/RecordRepository.js';
 import AppError, { ERROR_PRESETS } from '../../errors/AppError.js';
 
-class GetSessionAction extends IAction {
+class DeleteRecordAction extends IAction {
   constructor() {
     super();
 
-    this.sessionService = new SessionService(new SessionRepository());
+    this.service = new RecordService(new RecordRepository());
   }
 
   run = async (req, res) => {
     const { id } = this.validate(req.params);
 
-    const session = await this.sessionService.getById(id);
+    await this.service.deleteById(id);
 
-    return res.json({ ...session });
+    return res.json({ success: true, message: `Seccesful deleted by id: ${id}` });
   };
 
   validate(input) {
@@ -31,4 +31,4 @@ class GetSessionAction extends IAction {
   }
 }
 
-export default GetSessionAction;
+export default DeleteRecordAction;
