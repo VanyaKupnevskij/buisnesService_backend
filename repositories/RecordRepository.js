@@ -73,7 +73,7 @@ class RecordRepository extends IRepository {
   async getAll(owner_id) {
     const items = await connection.query(getAllQuery, [owner_id]);
 
-    return items[0][2];
+    return items[0][1];
   }
 
   async delete(id) {
