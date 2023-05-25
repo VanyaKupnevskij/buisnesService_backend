@@ -1,5 +1,8 @@
 BEGIN;
 
+SET @start_date = ?;
+SET @end_date = ?;
+
 SELECT records.id AS id,
        date,
        records.money_account AS money_account,
@@ -22,6 +25,8 @@ SELECT records.id AS id,
             records.id = costs.records_id
         LEFT JOIN workers ON
             costs.workers_id = workers.id
-        WHERE records.owner_id = ?;
+        WHERE records.owner_id = ?
+        AND records.date >= DATE(@start_date)
+        AND records.date <= DATE(@end_date);
 
 COMMIT;

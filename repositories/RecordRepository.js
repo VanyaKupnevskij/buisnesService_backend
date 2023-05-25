@@ -73,10 +73,10 @@ class RecordRepository extends IRepository {
     return item;
   }
 
-  async getAll(owner_id) {
-    const items = await connection.query(getAllQuery, [owner_id]);
+  async getAll(start_date, end_date, owner_id) {
+    const items = await connection.query(getAllQuery, [start_date, end_date, owner_id]);
 
-    return items[0][1];
+    return items[0][3];
   }
 
   async delete(id) {
