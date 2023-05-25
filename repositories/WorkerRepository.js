@@ -32,15 +32,17 @@ class WorkerRepository extends IRepository {
     const item = items[0];
     if (!item) throw new AppError(ERROR_PRESETS.ENTITY_ID_NOT_EXIST(id));
 
-    const [costs] = await connection.execute('SELECT * FROM costs WHERE id = ?', [item.costs_id]);
+    const [costs] = await connection.execute('SELECT * FROM costs WHERE workers_id = ?', [item.id]);
 
-    item.cost = costs[0];
+    item.costs = costs;
 
     return item;
   }
 
-  async getAll() {
-    const [items] = await connection.execute('SELECT * FROM workers');
+  async getAll(owner_id) {
+    const [items] = await connection.execute('SELECT * FROM workers WHERE owner_id = ?', [
+      owner_id,
+    ]);
 
     return items;
   }
@@ -53,7 +55,7 @@ class WorkerRepository extends IRepository {
 
   async findByName(name, owner_id) {
     const [items] = await connection.execute(
-      'SELECT * FROM workers WHERE name = ? AND owner_id = ?',
+      'SELECT * FROM workers WHERE full_name = ? AND owner_id = ?',
       [name, owner_id],
     );
 

@@ -1,12 +1,13 @@
 BEGIN;
 
 SET @id = ?;
-SET @name = ?;
-SET @adress = ?;
+SET @owner_id = ?;
+SET @full_name = ?;
+SET @money_account = ?;
+SET @realm = ?;
+SET @salary = ?;
 
-INSERT INTO cinemas (id, name, adress) 
-            VALUES (@id, @name, @adress);
-INSERT INTO halls (id, cinemas_id, number, seats) 
-            VALUES ?;
+INSERT INTO workers (id, owner_id, full_name, money_account, realm, salary) 
+            VALUES (@id, @owner_id, @full_name, @money_account, @realm, @salary);
 
 COMMIT;

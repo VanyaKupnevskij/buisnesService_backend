@@ -14,18 +14,12 @@ class WorkerService extends BaseService {
       throw new AppError(ERROR_PRESETS.CREATE(itemData.full_name));
     }
 
-    if (itemData.cost) {
-      let cost = new CostEntity();
-      cost.price = itemData.price;
-      cost.already_paid = itemData.already_paid;
-
-      itemData.cost = cost;
-    }
-
     let item = new WorkerEntity();
+    item.owner_id = itemData.owner_id;
     item.full_name = itemData.full_name;
     item.money_account = itemData.money_account;
-    item.halls = itemData.halls;
+    item.realm = itemData.realm;
+    item.salary = itemData.salary;
 
     const createdItem = await this.repository.insert(item);
 

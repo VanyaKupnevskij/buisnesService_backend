@@ -9,7 +9,7 @@ class WorkerEntity extends IEntity {
     this.realm = null;
     this.salary = 0;
     this.owner_id = null;
-    this.cost = null;
+    this.costs = [];
   }
 }
 
