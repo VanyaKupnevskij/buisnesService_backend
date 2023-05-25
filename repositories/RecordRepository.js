@@ -37,17 +37,20 @@ class RecordRepository extends IRepository {
 
   async update(newData) {
     await connection.query(updateQuery, [
-      newData.id,
-      newData.projects_id,
-      newData.owner_id,
       newData.date,
       newData.money_account,
       newData.comment,
       newData.source_from,
+
       newData.income.price,
+
       newData.costs.workers_id,
       newData.costs.price,
       newData.costs.already_paid,
+
+      newData.id,
+      newData.id,
+      newData.id,
     ]);
 
     return this.getById(newData.id);

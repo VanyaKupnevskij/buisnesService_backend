@@ -26,15 +26,6 @@ class UpdateRecordAction extends IAction {
       throw new AppError(ERROR_PRESETS.INVALID_INPUT('Id', input.id, 'is invalid'));
     }
 
-    if (!input.projects_id) {
-      throw new AppError(
-        ERROR_PRESETS.INVALID_INPUT('Projects_id', input.projects_id, 'must exist'),
-      );
-    }
-    if (!input.owner_id) {
-      throw new AppError(ERROR_PRESETS.INVALID_INPUT('Owner_id', input.owner_id, 'must exist'));
-    }
-
     return input;
   }
 }
