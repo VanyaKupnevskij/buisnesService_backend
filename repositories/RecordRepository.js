@@ -1,11 +1,11 @@
 import IRepository from './IRepository.js';
 
 import { pool as connection } from '../config/database.mysql.js';
-import AppError, { ERROR_PRESETS } from '../errors/AppError.js';
 import loadQuery from '../queries/loadQuery.js';
 
 const createQuery = loadQuery('records/create');
 const getAllQuery = loadQuery('records/getAll');
+const getQuery = loadQuery('records/get');
 const updateQuery = loadQuery('records/update');
 
 class RecordRepository extends IRepository {
@@ -57,20 +57,9 @@ class RecordRepository extends IRepository {
   }
 
   async getById(id) {
-    const [items] = await connection.execute('SELECT * FROM records WHERE id = ?', [id]);
+    const items = await connection.query(getQuery, [id]);
 
-    const item = items[0];
-    if (!item) throw new AppError(ERROR_PRESETS.ENTITY_ID_NOT_EXIST(id));
-
-    const [income] = await connection.execute('SELECT * FROM income WHERE records_id = ?', [
-      item.id,
-    ]);
-    const [costs] = await connection.execute('SELECT * FROM costs WHERE records_id = ?', [item.id]);
-
-    item.income = income;
-    item.costs = costs;
-
-    return item;
+    return items[0][1][0];
   }
 
   async getAll(start_date, end_date, owner_id) {

@@ -62,6 +62,15 @@ class RecordService extends BaseService {
   getById = async (id) => {
     const item = await this.repository.getById(id);
 
+    const { margin, marginality, profitability } = this.calculateRowBuisnesValue(
+      item.income,
+      item.costs,
+    );
+
+    item.margin = margin;
+    item.marginality = marginality;
+    item.profitability = profitability;
+
     return item;
   };
 
@@ -104,29 +113,46 @@ class RecordService extends BaseService {
       };
 
       for (const [keyYear, infoYear] of Object.entries(additionalInfo.year)) {
-        additionalInfo.year[keyYear].margin = infoYear.income - infoYear.costs;
-        additionalInfo.year[keyYear].marginality =
-          (additionalInfo.year[keyYear].margin / infoYear.income) * 100;
-        additionalInfo.year[keyYear].profitability =
-          (additionalInfo.year[keyYear].margin / infoYear.income) * 100;
+        const { margin, marginality, profitability } = this.calculateRowBuisnesValue(
+          infoYear.income,
+          infoYear.costs,
+        );
+
+        additionalInfo.year[keyYear].margin = margin;
+        additionalInfo.year[keyYear].marginality = marginality;
+        additionalInfo.year[keyYear].profitability = profitability;
       }
       for (const [keyMonth, infoMonth] of Object.entries(additionalInfo.month)) {
-        additionalInfo.month[keyMonth].margin = infoMonth.income - infoMonth.costs;
-        additionalInfo.month[keyMonth].marginality =
-          (additionalInfo.month[keyMonth].margin / infoMonth.income) * 100;
-        additionalInfo.month[keyMonth].profitability =
-          (additionalInfo.month[keyMonth].margin / infoMonth.income) * 100;
+        const { margin, marginality, profitability } = this.calculateRowBuisnesValue(
+          infoMonth.income,
+          infoMonth.costs,
+        );
+
+        additionalInfo.month[keyMonth].margin = margin;
+        additionalInfo.month[keyMonth].marginality = marginality;
+        additionalInfo.month[keyMonth].profitability = profitability;
       }
       for (const [keyDay, infoDay] of Object.entries(additionalInfo.day)) {
-        additionalInfo.day[keyDay].margin = infoDay.income - infoDay.costs;
-        additionalInfo.day[keyDay].marginality =
-          (additionalInfo.day[keyDay].margin / infoDay.income) * 100;
-        additionalInfo.day[keyDay].profitability =
-          (additionalInfo.day[keyDay].margin / infoDay.income) * 100;
+        const { margin, marginality, profitability } = this.calculateRowBuisnesValue(
+          infoDay.income,
+          infoDay.costs,
+        );
+
+        additionalInfo.day[keyDay].margin = margin;
+        additionalInfo.day[keyDay].marginality = marginality;
+        additionalInfo.day[keyDay].profitability = profitability;
       }
     }
 
     return { resultRecords, additionalInfo };
+  };
+
+  calculateRowBuisnesValue = (income, costs) => {
+    const margin = income - costs;
+    const marginality = (margin / income) * 100;
+    const profitability = (margin / income) * 100;
+
+    return { margin, marginality, profitability };
   };
 }
 
