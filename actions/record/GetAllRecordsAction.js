@@ -41,6 +41,12 @@ class GetAllRecordsAction extends IAction {
       throw new AppError(ERROR_PRESETS.INVALID_INPUT('End_date', input.end_date, 'is not valid'));
     }
 
+    if (!input.projects_id) {
+      throw new AppError(
+        ERROR_PRESETS.INVALID_INPUT('Projects_id', input.projects_id, 'must exist'),
+      );
+    }
+
     return input;
   }
 }

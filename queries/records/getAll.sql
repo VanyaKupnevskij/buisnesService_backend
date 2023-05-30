@@ -26,7 +26,8 @@ SELECT records.id AS id,
         LEFT JOIN workers ON
             costs.workers_id = workers.id
         WHERE records.owner_id = ?
-        AND records.date >= DATE(@start_date)
-        AND records.date <= DATE(@end_date);
+        AND records.date >= DATE(@start_date) 
+        AND records.date <= DATE(@end_date) 
+        AND records.projects_id = ?;
 
 COMMIT;

@@ -53,8 +53,8 @@ class RecordService extends BaseService {
     return updatedItem;
   };
 
-  getAll = async ({ start_date, end_date, owner_id }) => {
-    const items = await this.repository.getAll(start_date, end_date, owner_id);
+  getAll = async ({ start_date, end_date, owner_id, projects_id }) => {
+    const items = await this.repository.getAll(start_date, end_date, owner_id, projects_id);
 
     return this.calculateBuisnesValues(items);
   };

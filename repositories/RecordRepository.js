@@ -62,8 +62,13 @@ class RecordRepository extends IRepository {
     return items[0][1][0];
   }
 
-  async getAll(start_date, end_date, owner_id) {
-    const items = await connection.query(getAllQuery, [start_date, end_date, owner_id]);
+  async getAll(start_date, end_date, owner_id, projects_id) {
+    const items = await connection.query(getAllQuery, [
+      start_date,
+      end_date,
+      owner_id,
+      projects_id,
+    ]);
 
     return items[0][3];
   }
