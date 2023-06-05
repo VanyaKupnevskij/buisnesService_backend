@@ -42,7 +42,7 @@ class AuthService extends BaseService {
 
     const token = jwt.sign({ id: findedUser.id }, config.get('jwtSecret'));
 
-    return token;
+    return { token, name: findedUser.name, email: findedUser.email };
   };
 }
 

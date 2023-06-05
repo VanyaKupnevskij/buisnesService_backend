@@ -1,7 +1,6 @@
 import AppError, { ERROR_PRESETS } from '../errors/AppError.js';
 import BaseService from './BaseService.js';
 import WorkerEntity from '../entities/WorkerEntity.js';
-import CostEntity from '../entities/CostEntity.js';
 
 class WorkerService extends BaseService {
   constructor(repository) {
