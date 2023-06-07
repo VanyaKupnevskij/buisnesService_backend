@@ -1,0 +1,130 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.table {
+  --count-column: 6;
+
+  display: block;
+  overflow: hidden;
+
+  height: 100%;
+
+  font-size: pxToRem(14px);
+
+  thead {
+    display: block;
+    margin-bottom: pxToRem(10px);
+
+    tr {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 pxToRem(10px);
+    }
+
+    th {
+      position: relative;
+      width: min(100%, calc((7 - var(--count-column)) * pxToRem(115px)));
+      padding: 0 pxToRem(5px);
+
+      font-weight: 600;
+      word-wrap: break-word;
+
+      &:first-child {
+        padding-right: pxToRem(10px);
+        text-align: left;
+      }
+      &:last-child {
+        padding-left: pxToRem(10px);
+        text-align: right;
+      }
+    }
+  }
+
+  tbody {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+
+    max-height: calc(100% - pxToRem(50px));
+    padding: pxToRem(10px) 0;
+
+    tr {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: pxToRem(16px) pxToRem(5px);
+
+      cursor: pointer;
+      transition: background-color 200ms;
+
+      animation: fadeEffect $table_row_fade_time forwards;
+      opacity: 0;
+
+      &.selected {
+        background-color: rgba($primary_color, 0.5);
+        border-radius: $border_radius;
+      }
+
+      &:hover {
+        background-color: rgba($panel_dark_color, 0.5);
+        border-radius: $border_radius;
+        box-shadow: $little_box_shadow;
+      }
+      &:hover + tr::after,
+      &.selected + tr::after {
+        opacity: 0;
+      }
+      &:hover::after,
+      &.selected::after {
+        opacity: 0;
+      }
+    }
+
+    td {
+      position: relative;
+      width: min(100%, calc((7 - var(--count-column)) * pxToRem(115px)));
+      padding: 0 pxToRem(10px);
+
+      font-weight: 500;
+      text-align: center;
+      word-wrap: break-word;
+
+      &:first-child {
+        padding-right: pxToRem(10px);
+        text-align: left;
+      }
+      &:last-child {
+        padding-left: pxToRem(10px);
+        text-align: right;
+      }
+    }
+
+    tr + tr::after {
+      content: '';
+      position: absolute;
+      width: calc(100% - pxToRem(40px));
+      height: pxToRem(2px);
+      top: pxToRem(-5px);
+      left: pxToRem(20px);
+      background-color: $panel_dark_color;
+    }
+  }
+}
+
+@for $i from 1 through 30 {
+  .table tr:nth-child(#{$i}n) {
+    animation-delay: #{($i - 1) * $table_row_fade_delay}ms;
+  }
+}
+
+@keyframes fadeEffect {
+  0% {
+    transform: rotateX(40deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,72 @@
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/mixins.scss';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: $gap_block;
+
+  height: fit-content;
+
+  .title {
+    margin: 0;
+    margin-bottom: pxToRem(20px);
+
+    color: $dark_gray_color;
+
+    font-weight: 600;
+    font-size: pxToRem(22px);
+    text-align: center;
+  }
+
+  .error_message {
+    color: $red_color;
+
+    text-align: center;
+  }
+
+  .list_info {
+    display: flex;
+    flex-direction: column;
+    gap: pxToRem(35px);
+
+    .row {
+      display: flex;
+      flex-direction: column;
+      gap: pxToRem(10px);
+
+      dt {
+        font-size: pxToRem(18px);
+        font-weight: 600;
+      }
+      dd {
+        margin: 0;
+
+        color: $primary_dark2_color;
+
+        font-size: pxToRem(18px);
+      }
+    }
+  }
+
+  .submit_button {
+    margin-top: pxToRem(10px);
+    width: 100%;
+  }
+
+  .another_link {
+    color: $primary_dark2_color;
+
+    text-align: center;
+    font-size: pxToRem(14px);
+
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+    &:active {
+      color: $black_color;
+    }
+  }
+}

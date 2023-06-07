@@ -1,0 +1,37 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.root {
+  margin: 0;
+  padding: pxToRem(16px) pxToRem(20px);
+  width: fit-content;
+  height: fit-content;
+
+  background-color: $primary_color;
+  color: $black_color;
+
+  border: none;
+  outline: none;
+  border-radius: $border_radius;
+
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+
+  cursor: pointer;
+  appearance: none;
+
+  transition: transform 150ms ease;
+
+  &:hover {
+    background-color: $primary_dark_color;
+  }
+
+  &:active {
+    background-color: $primary_dark2_color;
+  }
+
+  &:disabled {
+    background-color: $gray_color;
+  }
+}

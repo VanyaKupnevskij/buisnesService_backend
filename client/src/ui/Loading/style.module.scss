@@ -1,0 +1,58 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.spinner {
+  display: inline-block;
+  width: pxToRem(167px);
+  height: pxToRem(167px);
+
+  overflow: hidden;
+  background: transparent;
+}
+
+.ripple {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0;
+
+  div {
+    box-sizing: content-box;
+    position: absolute;
+
+    border-width: pxToRem(8.35px);
+    border-style: solid;
+    opacity: 1;
+    border-radius: 35%;
+
+    animation: rippleAnimation 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  }
+
+  div:nth-child(1) {
+    border-color: $primary_color;
+    animation-delay: 0s;
+  }
+  div:nth-child(2) {
+    border-color: $primary_dark_color;
+    animation-delay: -0.5s;
+  }
+}
+
+@keyframes rippleAnimation {
+  0% {
+    top: pxToRem(75px);
+    left: pxToRem(75px);
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: pxToRem(30px);
+    left: pxToRem(30px);
+    width: pxToRem(90px);
+    height: pxToRem(90px);
+    opacity: 0;
+  }
+}

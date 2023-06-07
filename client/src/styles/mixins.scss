@@ -1,0 +1,36 @@
+@use 'sass:math';
+
+@function pxToRem($pxValue) {
+  @return math.div($pxValue, 16px) * 1rem;
+}
+
+@function minMaxSize($standart, $verticalHeight, $minimun) {
+  @return min(max($verticalHeight, pxToRem($minimun)), pxToRem($standart));
+}
+
+@mixin numberEffectStyle {
+  --start-delay: 500ms;
+  --duration: 1700ms;
+
+  animation: numberEffect var(--duration) forwards;
+  animation-delay: var(--start-delay);
+  opacity: 0;
+}
+
+@keyframes numberEffect {
+  0% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  72% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

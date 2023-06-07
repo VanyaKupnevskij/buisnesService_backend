@@ -1,0 +1,45 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.root {
+  position: relative;
+  margin: pxToRem(2px);
+  margin-top: pxToRem(5px);
+
+  width: fit-content;
+}
+
+.label {
+  position: absolute;
+  padding: 0 pxToRem(6px);
+  left: pxToRem(15px);
+  top: pxToRem(-6px);
+
+  background-color: $primary_color;
+  color: $black_color;
+  border-radius: pxToRem(3px);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.input {
+  appearance: none;
+  padding: pxToRem(13px) pxToRem(15px);
+  width: fit-content;
+  min-width: pxToRem(230px);
+  max-width: pxToRem(400px);
+
+  background-color: $panel_color;
+  color: $black_color;
+  outline: none;
+
+  border: $border;
+  border-radius: $border_radius;
+}
+
+.arrow {
+  position: absolute;
+  width: pxToRem(15px);
+  right: pxToRem(7px);
+  top: calc(1em + pxToRem(3px));
+}

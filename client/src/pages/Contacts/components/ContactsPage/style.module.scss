@@ -1,0 +1,68 @@
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/mixins.scss';
+
+iframe {
+  margin-top: pxToRem(30px);
+
+  height: pxToRem(300px);
+
+  background-color: transparent;
+
+  border: $border;
+  border-radius: $border_radius;
+}
+
+.info {
+  animation: fadeEffect 1000ms forwards;
+  opacity: 0;
+
+  .sub_title {
+    margin: pxToRem(15px) 0;
+
+    font-size: pxToRem(30px);
+    font-weight: 300;
+  }
+
+  .line {
+    position: relative;
+
+    margin: pxToRem(35px) 0;
+
+    width: pxToRem(300px);
+    height: 1px;
+
+    background-color: $black_color;
+  }
+
+  .row {
+    display: flex;
+    gap: pxToRem(30px);
+
+    width: fit-content;
+
+    &:hover p {
+      border-bottom: 2px solid $primary_dark2_color;
+
+      color: $primary_dark2_color;
+    }
+
+    img {
+      width: pxToRem(32px);
+    }
+
+    p {
+      border-bottom: 2px solid transparent;
+
+      transition: all 200ms;
+    }
+  }
+}
+
+@keyframes fadeEffect {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,28 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+.panel {
+  padding: pxToRem(13px) pxToRem(25px);
+  min-width: minMaxSize(330px, 20vh, 280px);
+  min-height: pxToRem(140px);
+
+  background-color: $panel_color;
+
+  border-radius: $border_radius;
+
+  animation: fadeEffect $panel_fade_time forwards;
+  opacity: 0;
+
+  overflow: hidden;
+}
+
+@keyframes fadeEffect {
+  0% {
+    transform: rotateX(40deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+}

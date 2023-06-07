@@ -1,0 +1,52 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.root {
+  grid-row: span 2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: minMaxSize(30px, 3.8vh, 20px);
+
+  min-height: pxToRem(230px);
+
+  .title {
+    margin: 0;
+
+    color: $dark_gray_color;
+
+    font-weight: 600;
+    font-size: minMaxSize(20px, 2.3vh, 16px);
+    text-align: center;
+  }
+
+  .value {
+    margin: 0;
+
+    font-weight: 600;
+    font-size: minMaxSize(34px, 4.2vh, 24px);
+
+    transition: all 0.3s;
+
+    @include numberEffectStyle;
+
+    &_normal {
+      color: $black_color;
+    }
+    &_good {
+      color: $green_color;
+    }
+    &_bad {
+      color: $red_color;
+    }
+  }
+
+  .percent {
+    margin: 0;
+
+    font-weight: 600;
+    font-size: minMaxSize(20px, 2vh, 14px);
+  }
+}

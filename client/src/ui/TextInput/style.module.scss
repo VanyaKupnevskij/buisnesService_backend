@@ -1,0 +1,59 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.root {
+  position: relative;
+
+  textarea {
+    width: 300px;
+    height: 130px;
+
+    resize: none;
+  }
+}
+
+.label {
+  position: absolute;
+  left: pxToRem(15px);
+  top: pxToRem(-1px);
+  transform: translateY(1em);
+
+  color: $primary_dark2_color;
+  border-radius: pxToRem(3px);
+  font-size: 1rem;
+  font-weight: 500;
+
+  transition: all 150ms ease;
+}
+
+.input {
+  padding: pxToRem(13px) pxToRem(15px);
+  width: 100%;
+
+  background-color: $panel_color;
+  color: $black_color;
+
+  outline: none;
+  border: $border;
+  border-radius: $border_radius;
+
+  &::placeholder {
+    opacity: 0;
+
+    transition: all 300ms ease;
+  }
+
+  &:focus ~ .label,
+  &:not(:placeholder-shown) ~ .label {
+    transform: translateY(pxToRem(-5px));
+    padding: 0 pxToRem(6px);
+
+    background-color: $primary_color;
+    color: $black_color;
+    font-size: 0.8rem;
+  }
+
+  &:focus::placeholder {
+    opacity: 1;
+  }
+}
