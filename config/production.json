@@ -1,7 +1,7 @@
 {
   "port": 80,
   "jwtSecret": "buisnes service site secret_jwt",
-  "baseUrl": "https://still-basin-52234.herokuapp.com",
+  "baseUrl": "http://localhost",
   "HOST_MYSQL": "localhost",
   "USER_MYSQL": "root",
   "PASSWORD_MYSQL": "root",
