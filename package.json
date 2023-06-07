@@ -1,7 +1,7 @@
 {
-  "name": "cinema_backend",
+  "name": "buisnes_backend",
   "version": "1.0.0",
-  "description": "service for work with cinema BD",
+  "description": "service for work with buisneses",
   "main": "index.js",
   "type": "module",
   "scripts": {
