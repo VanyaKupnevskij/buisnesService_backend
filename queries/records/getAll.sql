@@ -28,6 +28,7 @@ SELECT records.id AS id,
         WHERE records.owner_id = ?
         AND records.date >= DATE(@start_date) 
         AND records.date <= DATE(@end_date) 
-        AND records.projects_id = ?;
+        AND records.projects_id = ? 
+        ORDER BY records.date DESC;
 
 COMMIT;
